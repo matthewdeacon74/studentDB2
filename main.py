@@ -14,10 +14,9 @@ def list_names(arg1:list):
 
 # function to add a new student
 def get_new_student() -> dict:
-    student_details = {}
-    student_details['name'] = input("What is the student's name? ")
-    student_details['hometown'] = input("What is the student's home town? ")
-    student_details['favorite_food'] = input("What is the student's favorite food? ")
+    student_details = {'name': input("What is the student's name? "),
+                       'hometown': input("What is the student's home town? "),
+                       'favorite_food': input("What is the student's favorite food? ")}
     return student_details
 
 
@@ -33,6 +32,7 @@ while not do_quit:
         # list students, prompt user to pick one by index/position
         list_names(students)
         picked_student = int(input(f"Which student would you like to view (1-{len(students)})? "))
+        # set index value for use in literals below so we don't have to keep using picked_student-1 everywhere
         student_index = picked_student-1
         view_action = input(f"Would you like to see {students[student_index]['name']}'s hometown ('h') or favorite food ('f')? ")
         if view_action.lower() == 'h':
@@ -40,7 +40,7 @@ while not do_quit:
         elif view_action.lower() == 'f':
             print(f"{students[student_index]['name']}'s favorite food is {students[student_index]['favorite_food']}")
         else:
-            print("that's not a valid option.  Please restart.")
+            print("That's not a valid option.  Please restart.")
     elif user_action.lower() == 'quit':
         print("OK, good bye!")
         do_quit = True
