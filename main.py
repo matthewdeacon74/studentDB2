@@ -14,11 +14,11 @@ def list_names(arg1:list):
 
 # function to add a new student
 def get_new_student() -> dict:
-    new_student = {}
-    new_student['name'] = input("What is the student's name? ")
-    new_student['hometown'] = input("What is the student's home town? ")
-    new_student['favorite_food'] = input("What is the student's favorite food? ")
-    return new_student
+    student_details = {}
+    student_details['name'] = input("What is the student's name? ")
+    student_details['hometown'] = input("What is the student's home town? ")
+    student_details['favorite_food'] = input("What is the student's favorite food? ")
+    return student_details
 
 
 # prompt user to add, view, or quit; keep prompting until quit
@@ -33,11 +33,12 @@ while not do_quit:
         # list students, prompt user to pick one by index/position
         list_names(students)
         picked_student = int(input(f"Which student would you like to view (1-{len(students)})? "))
-        student_details = input(f"Would you like to see {students[picked_student-1]['name']}'s hometown ('h') or favorite food ('f')? ")
-        if student_details.lower() == 'h':
-            print(f"{students[picked_student-1]['name']}'s hometown is {students[picked_student-1]['hometown']}")
-        elif student_details.lower() == 'f':
-            print(f"{students[picked_student-1]['name']}'s favorite food is {students[picked_student-1]['favorite_food']}")
+        student_index = picked_student-1
+        view_action = input(f"Would you like to see {students[student_index]['name']}'s hometown ('h') or favorite food ('f')? ")
+        if view_action.lower() == 'h':
+            print(f"{students[student_index]['name']}'s hometown is {students[student_index]['hometown']}")
+        elif view_action.lower() == 'f':
+            print(f"{students[student_index]['name']}'s favorite food is {students[student_index]['favorite_food']}")
         else:
             print("that's not a valid option.  Please restart.")
     elif user_action.lower() == 'quit':
